@@ -14,7 +14,7 @@ def PUM(nj:int, o:int)->None:
     n=1
     j=1
     
-    while i < 50 and o < 10:
+    while i < 500 and o < 10:
         
         if j== nj+1:
             j=1
