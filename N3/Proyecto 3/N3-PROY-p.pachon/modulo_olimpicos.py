@@ -56,7 +56,7 @@ sea una lista con los nombres de los atletas que concursaron ese año en el even
         lista_nombres= []
     
     return dicc_eventos       
-#print(atletas_por_anio(a,2000))
+print(atletas_por_anio(a,2000))
         
 def medallas_en_rango(atletas: list,  nombre_atleta: str,anio_i: int, anio_f: int) -> list:
     """Función 3:
@@ -225,11 +225,11 @@ llaves los nombres de los atletas y como valores el número de medallas ganadas 
     lista_medallistas= []
     num_medallas
     for cada_atleta in atletas:
-       
+
         if cada_atleta["medalla"] != "na":
             lista_medallistas.append(cada_atleta)
-            
-            
+
+
     for cada_medallista in lista_medallistas:
         
         if cada_medallista["nombre"] not in dicc_medallistas.keys():
@@ -237,9 +237,7 @@ llaves los nombres de los atletas y como valores el número de medallas ganadas 
             dicc_medallistas[cada_medallista["nombre"]]= 1
         else:
             dicc_medallistas[cada_medallista["nombre"]]+= 1
-            
-            
-              
+
     dicc_medallistas_copia = dicc_medallistas.copy()
     
     for cada_medallista in dicc_medallistas_copia.keys():
