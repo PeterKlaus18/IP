@@ -15,14 +15,14 @@ def ejecutar_cargar_atletas() -> list:
     return atletas
 
 
-def ejecutar_atletas_por_anio(atletas: list) -> dict:
-       
+def ejecutar_atletas_por_anio(atletas: list) -> None:
+
     anio = input("Ingrese el año de su interés: ")
     print(olim.atletas_por_anio(atletas, anio))
- 
+
     
-def ejecutar_medallas_en_rango(atletas: list) -> list:
-  
+def ejecutar_medallas_en_rango(atletas: list) -> None:
+
     nombre = input("Ingrese el nombre del atleta de su interés: ")
     aniomenor = int(input("Ingrese el límite inferior del rango: "))
     aniomayor = int(input("Ingrese el límite superior del rango: "))
@@ -35,29 +35,29 @@ def ejecutar_atletas_por_pais(atletas: list) -> list:
     print(olim.atletas_por_pais(atletas, pais))
     
 
-def ejecutar_pais_con_mas_atletas(atletas: list) -> dict:
+def ejecutar_pais_con_mas_atletas(atletas: list) -> None:
     
     print(olim.pais_con_mas_atletas(atletas))
     
-   
-def ejecutar_medallistas_por_evento(atletas: list) -> list:
+
+def ejecutar_medallistas_por_evento(atletas: list) -> None:
     
     evento = input("Ingrese el evento de su interés: ")
     print(olim.medallistas_por_evento(atletas, evento))
     
 
-def ejecutar_atletas_con_mas_medallas_que(atletas: list) -> dict:
- 
+def ejecutar_atletas_con_mas_medallas_que(atletas: list) -> None:
+
     limite = int(input("Ingrese el mínimo de medallas: "))
     print(olim.atletas_con_mas_medallas_que(atletas, limite))
     
 
-def ejecutar_atleta_estrella(atletas: list) -> dict:
+def ejecutar_atleta_estrella(atletas: list) -> None:
     
     print(olim.atleta_estrella(atletas))
     
     
-def ejecutar_mejor_pais_en_un_evento(atletas: list) -> dict:
+def ejecutar_mejor_pais_en_un_evento(atletas: list) -> None:
     
     evento = input("Ingrese el evento de su interés: ")
     print(olim.mejor_pais_en_un_evento(atletas, evento))
@@ -68,14 +68,14 @@ def ejecutar_todoterreno(atletas: list) -> str:
     print(olim.todoterreno(atletas))
     
     
-def ejecutar_medallistas_por_nacion_y_genero(atletas: list) -> dict:
+def ejecutar_medallistas_por_nacion_y_genero(atletas: list) -> None:
     
     pais = input("Ingrese el país de su interés: ")
     genero = input("Ingrese el género de su interés (m o f): ")
     print(olim.medallistas_por_nacion_y_genero(atletas, pais, genero))
     
     
-def ejecutar_porcentaje_medallistas(atletas: list) -> float:
+def ejecutar_porcentaje_medallistas(atletas: list) -> None:
     
     print(olim.porcentaje_medallistas(atletas))    
 

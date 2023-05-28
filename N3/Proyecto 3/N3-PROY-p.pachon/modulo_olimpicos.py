@@ -289,8 +289,28 @@ def mejor_pais_en_un_evento(atletas: list, evento: str) -> dict:
     tipo ([gold, silver, bronze]). Si se encuentran 2 o más países igual de exitosos y que sean el mejor, el diccionario
     debe contenerlos a todos. """
     
+    dicc_medallistas= {}
+    max_medallas= 0
+    atleta_estrella= {}
+    bronces = 0
+    platas = 0
+    oros = 0
+
+    for cada_atleta in atletas:
+            
+            if cada_atleta["medalla"] != "na" and cada_atleta["evento"] == evento:
+                
+                if cada_atleta["medalla"] == "gold":
+                    oros += 1
+                elif cada_atleta["medalla"] == "silver":
+                    platas += 1
+                elif cada_atleta["medalla"] == "bronze":
+                    bronces += 1
 
 
+
+
+    
 
 
 
@@ -320,7 +340,7 @@ def todoterreno(atletas: list) -> str:
     return
 
 
-def ejecutar_medallistas_por_nacion_y_genero(atletas: list, pais: str, genero: str) -> dict:
+def medallistas_por_nacion_y_genero(atletas: list, pais: str, genero: str) -> dict:
     """Función 11:
     Implemente una función que reciba como parámetro la lista completa de atletas (diccionarios), el nombre de
     un país y un género (“m” o “f”), y retorne un diccionario con los medallistas de dicho país y género. Las llaves
@@ -349,7 +369,7 @@ def ejecutar_medallistas_por_nacion_y_genero(atletas: list, pais: str, genero: s
     return
 
 
-def ejecutar_porcentaje_medallistas(atletas: list) -> float:
+def porcentaje_medallistas(atletas: list) -> float:
     """Función 12:
     Implemente una función que reciba como parámetro la lista completa de atletas (diccionarios), y retorne el
     porcentaje de atletas que ganaron alguna medalla (en todos los tiempos), con dos decimales de aproximación.
