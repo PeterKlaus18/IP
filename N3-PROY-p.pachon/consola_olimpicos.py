@@ -11,8 +11,9 @@ def ejecutar_cargar_atletas() -> list:
     if len(atletas) == 0:
         print("El archivo seleccionado no es válido. No se pudieron cargar los atletas olímpicos")
     else:
-        print("Se cargaron", len(atletas), "atletas a partir del archivo.")
+        print("Se cagaron", len(atletas), "atletas a partir del archivo.")
     return atletas
+
 
 
 def ejecutar_atletas_por_anio(atletas: list) -> None:
