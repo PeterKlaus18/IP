@@ -286,69 +286,55 @@ def mejor_pais_en_un_evento(atletas: list, evento: str) -> dict:
     tipo ([gold, silver, bronze]). Si se encuentran 2 o más países igual de exitosos y que sean el mejor, el diccionario
     debe contenerlos a todos. """
 
-    dicc_paises= {}
-    lista_paises= []
-    gold= 0
-    pais_ganador= ""
-    dicc_final= {}
-
+    dicc_paises = {}
+    gold = 0
+    lista_paises = []
+    dicc_final = {}
 
     for cada_atleta in atletas:
-        
         if cada_atleta["evento"] == evento and cada_atleta["medalla"] != "na":
+            pais = cada_atleta["pais"]
+            medalla = cada_atleta["medalla"]
+            
+            if pais not in dicc_paises:
+                num_medallas = {"gold": 0, "silver": 0, "bronze": 0}
 
-            if cada_atleta["pais"] not in dicc_paises.keys():
-                
-                num_medallas= {"gold": 0, "silver": 0, "bronze": 0}
+                if medalla == "gold":
+                    num_medallas["gold"] += 1
+                elif medalla == "silver":
+                    num_medallas["silver"] += 1
+                elif medalla == "bronze":
+                    num_medallas["bronze"] += 1
 
-                if cada_atleta["medalla"] == "gold":
-                    num_medallas["gold"]+= 1
-
-                if cada_atleta["medalla"] == "silver":
-                    num_medallas["silver"]+= 1
-
-                if cada_atleta["medalla"] == "bronze":
-                    num_medallas["bronze"]+= 1
-
-                dicc_paises[cada_atleta["pais"]] = num_medallas
+                dicc_paises[pais] = num_medallas
             else:
-                if cada_atleta["medalla"] == "gold":
-                    dicc_paises[cada_atleta["pais"]]["gold"]+= 1
-
-                if cada_atleta["medalla"] == "silver":
-                    dicc_paises[cada_atleta["pais"]]["silver"]+= 1
-
-                if cada_atleta["medalla"] == "bronze":
-                    dicc_paises[cada_atleta["pais"]]["bronze"]+= 1
+                if medalla == "gold":
+                    dicc_paises[pais]["gold"] += 1
+                elif medalla == "silver":
+                    dicc_paises[pais]["silver"] += 1
+                elif medalla == "bronze":
+                    dicc_paises[pais]["bronze"] += 1
 
     for cada_pais in dicc_paises:
-
         if dicc_paises[cada_pais]["gold"] > gold:
-            gold= dicc_paises[cada_pais]["gold"]
-            pais_ganador= dicc_paises[cada_pais]
-        if dicc_paises[cada_pais]["gold"] == gold:
-
-            if dicc_paises[cada_pais]["silver"] > pais_ganador["silver"]:
-                pais_ganador= dicc_paises[cada_pais]
-
-            if dicc_paises[cada_pais]["silver"] == pais_ganador["silver"]:
-
-                if dicc_paises[cada_pais]["bronze"] > pais_ganador["bronze"]:
-                    pais_ganador= dicc_paises[cada_pais]
-
-                if dicc_paises[cada_pais]["bronze"] == pais_ganador["bronze"]:
-                    lista_paises.append(dicc_paises[cada_pais])
-
-                else:
-                    lista_paises.append(pais_ganador)
+            gold = dicc_paises[cada_pais]["gold"]
+            lista_paises = [cada_pais]
+        elif dicc_paises[cada_pais]["gold"] == gold:
+            if dicc_paises[cada_pais]["silver"] > dicc_paises[lista_paises[0]]["silver"]:
+                lista_paises = [cada_pais]
+            elif dicc_paises[cada_pais]["silver"] == dicc_paises[lista_paises[0]]["silver"]:
+                if dicc_paises[cada_pais]["bronze"] > dicc_paises[lista_paises[0]]["bronze"]:
+                    lista_paises = [cada_pais]
+                elif dicc_paises[cada_pais]["bronze"] == dicc_paises[lista_paises[0]]["bronze"]:
+                    lista_paises.append(cada_pais)
 
     for cada_pais in lista_paises:
-        lista_medallas= []
-        lista_medallas.append(dicc_paises[cada_pais]["gold"])
-        lista_medallas.append(dicc_paises[cada_pais]["silver"])
-        lista_medallas.append(dicc_paises[cada_pais]["bronze"])
-
-        dicc_final["pais"]= lista_medallas
+        lista_medallas = [
+            dicc_paises[cada_pais]["gold"],
+            dicc_paises[cada_pais]["silver"],
+            dicc_paises[cada_pais]["bronze"],
+        ]
+        dicc_final[cada_pais] = lista_medallas
 
     return dicc_final
 print(mejor_pais_en_un_evento(a, "athletics women's 100 metres"))
