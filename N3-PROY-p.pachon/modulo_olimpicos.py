@@ -313,34 +313,31 @@ def mejor_pais_en_un_evento(atletas: list, evento: str) -> dict:
                 dicc_paises[cada_atleta["pais"]] = num_medallas
             else:
                 if cada_atleta["medalla"] == "gold":
-                    num_medallas["gold"]+= 1
+                    dicc_paises[cada_atleta["pais"]]["gold"]+= 1
 
                 if cada_atleta["medalla"] == "silver":
-                    num_medallas["silver"]+= 1
+                    dicc_paises[cada_atleta["pais"]]["silver"]+= 1
 
                 if cada_atleta["medalla"] == "bronze":
-                    num_medallas["bronze"]+= 1
+                    dicc_paises[cada_atleta["pais"]]["bronze"]+= 1
 
     for cada_pais in dicc_paises:
 
         if dicc_paises[cada_pais]["gold"] > gold:
             gold= dicc_paises[cada_pais]["gold"]
-            pais_ganador= cada_pais
-
+            pais_ganador= dicc_paises[cada_pais]
         if dicc_paises[cada_pais]["gold"] == gold:
 
-            x= int(pais_ganador["silver"])
-
-            if dicc_paises[cada_pais]["silver"] > x:
-                pais_ganador= cada_pais
+            if dicc_paises[cada_pais]["silver"] > pais_ganador["silver"]:
+                pais_ganador= dicc_paises[cada_pais]
 
             if dicc_paises[cada_pais]["silver"] == pais_ganador["silver"]:
 
                 if dicc_paises[cada_pais]["bronze"] > pais_ganador["bronze"]:
-                    pais_ganador= cada_pais
+                    pais_ganador= dicc_paises[cada_pais]
 
                 if dicc_paises[cada_pais]["bronze"] == pais_ganador["bronze"]:
-                    lista_paises.append(cada_pais)
+                    lista_paises.append(dicc_paises[cada_pais])
 
                 else:
                     lista_paises.append(pais_ganador)
