@@ -435,7 +435,7 @@ def porcentaje_medallistas(atletas: list) -> float:
         if cada_atleta["medalla"] != "na" and cada_atleta["nombre"] not in lista_medallistas:
             lista_medallistas.append(cada_atleta["nombre"])
 
-    porcentaje= round((len(lista_medallistas)/len(atletas))*100, 2)
-
+    porcentaje= round((len(lista_medallistas)/len(lista_atletas))*100, 2)
+    
     return porcentaje
 print(porcentaje_medallistas(a))
