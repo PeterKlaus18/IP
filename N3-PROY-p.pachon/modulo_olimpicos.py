@@ -300,32 +300,39 @@ def mejor_pais_en_un_evento(atletas: list, evento: str) -> dict:
                 num_medallas = {"gold": 0, "silver": 0, "bronze": 0}
 
                 if medalla == "gold":
-                    num_medallas["gold"] += 1
+                    num_medallas["gold"]+= 1
                 elif medalla == "silver":
-                    num_medallas["silver"] += 1
+                    num_medallas["silver"]+= 1
                 elif medalla == "bronze":
-                    num_medallas["bronze"] += 1
+                    num_medallas["bronze"]+= 1
 
                 dicc_paises[pais] = num_medallas
             else:
                 if medalla == "gold":
-                    dicc_paises[pais]["gold"] += 1
+                    dicc_paises[pais]["gold"]+= 1
                 elif medalla == "silver":
-                    dicc_paises[pais]["silver"] += 1
+                    dicc_paises[pais]["silver"]+= 1
                 elif medalla == "bronze":
-                    dicc_paises[pais]["bronze"] += 1
+                    dicc_paises[pais]["bronze"]+= 1
 
     for cada_pais in dicc_paises:
+
         if dicc_paises[cada_pais]["gold"] > gold:
             gold = dicc_paises[cada_pais]["gold"]
             lista_paises = [cada_pais]
+
         elif dicc_paises[cada_pais]["gold"] == gold:
+
             if dicc_paises[cada_pais]["silver"] > dicc_paises[lista_paises[0]]["silver"]:
                 lista_paises = [cada_pais]
+
             elif dicc_paises[cada_pais]["silver"] == dicc_paises[lista_paises[0]]["silver"]:
+
                 if dicc_paises[cada_pais]["bronze"] > dicc_paises[lista_paises[0]]["bronze"]:
                     lista_paises = [cada_pais]
+
                 elif dicc_paises[cada_pais]["bronze"] == dicc_paises[lista_paises[0]]["bronze"]:
+                    
                     lista_paises.append(cada_pais)
 
     for cada_pais in lista_paises:
@@ -337,7 +344,7 @@ def mejor_pais_en_un_evento(atletas: list, evento: str) -> dict:
         dicc_final[cada_pais] = lista_medallas
 
     return dicc_final
-print(mejor_pais_en_un_evento(a, "athletics women's 100 metres"))
+#print(mejor_pais_en_un_evento(a, "athletics women's 100 metres"))
 
 def todoterreno(atletas: list) -> str:
     """Función 10:
@@ -345,18 +352,39 @@ def todoterreno(atletas: list) -> str:
     nombre del atleta más “Todoterreno”. Es decir, aquel que haya participado en más eventos diferentes a través
     de los años. Para esta función solo debe contar una vez cada deporte, si un atleta participó en el mismo evento
     en años diferentes, solo debe contarse como un evento único. """
+    
+    lista_eventos= []
+    lista_nombres= []
+
+    for cada_atleta in atletas:
+        
+        if cada_atleta["nombre"] not in lista_nombres:
+            lista_nombres.append(cada_atleta["nombre"])
+
+    for cada_atleta in atletas:
+            
+        if cada_atleta["evento"] not in lista_eventos:
+            lista_eventos.append(cada_atleta["evento"])
+
+    for index in range(len(lista_nombres)):
+
+        for cada_atleta in atletas:
+
+            if cada_atleta["nombre"] == lista_nombres[index]:
+                
+
+                cada_atleta["evento"] != lista_eventos[index]
+
+
+
+
+
         
 
+    atleta_todoterreno= ""
 
-
-
-
-
-
-
-
-    return
-# print(todoterreno(a))
+    return atleta_todoterreno
+#print(todoterreno(a))
 
 def medallistas_por_nacion_y_genero(atletas: list, pais: str, genero: str) -> dict:
     """Función 11:
@@ -396,15 +424,18 @@ def porcentaje_medallistas(atletas: list) -> float:
 
     Porcentaje Medallistas = Número de Medallistas/ Número de Atletas """
     
+    lista_atletas= []
+    lista_medallistas= []
 
+    for cada_atleta in atletas:
 
+        if cada_atleta["nombre"] not in lista_atletas:
+            lista_atletas.append(cada_atleta["nombre"])
 
+        if cada_atleta["medalla"] != "na" and cada_atleta["nombre"] not in lista_medallistas:
+            lista_medallistas.append(cada_atleta["nombre"])
 
+    porcentaje= round((len(lista_medallistas)/len(atletas))*100, 2)
 
-
-
-
-
-
-    return
-# print(porcentaje_medallistas(a))
+    return porcentaje
+print(porcentaje_medallistas(a))
