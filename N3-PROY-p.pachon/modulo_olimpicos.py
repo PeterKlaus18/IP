@@ -438,4 +438,4 @@ def porcentaje_medallistas(atletas: list) -> float:
     porcentaje= round((len(lista_medallistas)/len(lista_atletas))*100, 2)
     
     return porcentaje
-print(porcentaje_medallistas(a))
+#print(porcentaje_medallistas(a))
