@@ -163,6 +163,7 @@ def ejecutar_mostrar_pga_promedio() -> None:
         "Ingrese el nombre del archivo de estadísticas: ")
 
     be.mostrar_pga_promedio(ruta_archivo_estadisticas)
+    print("La imagen ha sido guardada en la carpeta del proyecto")
 
 
 def ejecutar_mostrar_puestos_estudios_dirigidos() -> None:
@@ -172,6 +173,7 @@ def ejecutar_mostrar_puestos_estudios_dirigidos() -> None:
     """
     ruta_archivo_puestos = input("Ingrese el nombre del archivo de puestos: ")
     be.mostrar_puestos_estudios_dirigidos(ruta_archivo_puestos)
+    print("La imagen ha sido guardada en la carpeta del proyecto")
 
 
 def iniciar_aplicacion():
