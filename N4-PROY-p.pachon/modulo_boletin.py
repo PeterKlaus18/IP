@@ -135,6 +135,31 @@ def facultad_mas_servicial(puestos: list) -> tuple:
             round(facultad_mas_servicial_porcentaje, 2))
 
 
+def hay_facultad_generosa(puestos: list, facultad: str,
+                          porcentaje: float) -> tuple:
+    porcentaje /= 100
+    facultad_ocupados = puestos_ocupados(puestos, facultad)
+    porcentaje_puestos = facultad_ocupados * porcentaje
+    facultad_index = puestos[0].index(facultad)
+
+    for facultad_row in puestos[1:]:
+        facultad_name = facultad_row[0]
+
+        facultad_a_facultad_interes = int(facultad_row[facultad_index])
+
+        if facultad_a_facultad_interes >= porcentaje_puestos:
+            facultad_porcentaje = (facultad_a_facultad_interes /
+                                   facultad_ocupados) * 100
+            return (facultad_name, round(facultad_porcentaje, 2))
+
+    return ("No existe facultad generosa", 0)
+
+
+print(
+    hay_facultad_generosa(cargar_matriz_puestos("matriz_puestos.csv"),
+                          "Medicina", 5))
+
+
 def calcular_autocubrimiento(puestos: list, estadisticas: list) -> list:
 
     facultades = puestos[1:]
@@ -169,13 +194,6 @@ def doble_mas_comun(dobles: list) -> tuple:
 
 
 def mostrar_pga_promedio(estadisticas: list) -> None:
-    """
-    Implemente una función que reciba por parámetro la ruta del archivo con las estadísticas de las facultades y muestre
-    los PGA promedio de todas las facultades de la universidad ordenados de menor a mayor. Se debe mostrar un diagrama
-    de barras vertical como el que se muestra a continuación. Para esto, debe cargar el CSV con la información de las
-    facultades a un DataFrame y a partir de este construir la gráfica haciendo uso de las funciones de las librerías
-    vistas en clase.
-    """
     pga_facultades = [0] * len(estadisticas)
     facultades = estadisticas[1:]
 
