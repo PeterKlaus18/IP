@@ -92,7 +92,6 @@ def medallas_en_rango(atletas: list,  nombre_atleta: str, anio_i: int, anio_f: i
             lista_medallas.append(cada_medalla["medalla"])
 
     for index in range(len(lista_anio)):
-
         dicc = {}
 
         dicc["evento"] = lista_eventos[index]
@@ -355,33 +354,29 @@ def todoterreno(atletas: list) -> str:
     
     lista_eventos= []
     lista_nombres= []
-
+    dicc_atletas= {}
+    
     for cada_atleta in atletas:
         
         if cada_atleta["nombre"] not in lista_nombres:
             lista_nombres.append(cada_atleta["nombre"])
-
-    for cada_atleta in atletas:
-            
-        if cada_atleta["evento"] not in lista_eventos:
-            lista_eventos.append(cada_atleta["evento"])
-
-    for index in range(len(lista_nombres)):
+        
+    for nombre_actual in lista_nombres:
+        lista_eventos= []
 
         for cada_atleta in atletas:
+            nombre= cada_atleta["nombre"]
 
-            if cada_atleta["nombre"] == lista_nombres[index]:
-                
+            if nombre == nombre_actual and cada_atleta["evento"] not in lista_eventos:
+                lista_eventos.append(cada_atleta["evento"])
 
-                cada_atleta["evento"] != lista_eventos[index]
+        dicc_atletas[nombre_actual]= len(lista_eventos)
 
+    atleta_todoterreno= list(dicc_atletas.keys())[0]
 
-
-
-
-        
-
-    atleta_todoterreno= ""
+    for cada_atleta in dicc_atletas:
+        if dicc_atletas[cada_atleta] > dicc_atletas[atleta_todoterreno]:
+            atleta_todoterreno= cada_atleta
 
     return atleta_todoterreno
 #print(todoterreno(a))
@@ -402,18 +397,23 @@ def medallistas_por_nacion_y_genero(atletas: list, pais: str, genero: str) -> di
     “medalla”: “bronze”}, {“evento”: "judo women's middleweight", “anio”: 2016,
     “medulla”: “silver”}], …} """
         
+    dicc_medallistas= {}
 
+    for cada_atleta in atletas:
 
+        if cada_atleta["pais"] == pais and cada_atleta["genero"] == genero and cada_atleta["medalla"] != "na":
+            nombre= cada_atleta["nombre"]
+            evento= cada_atleta["evento"]
+            anio= cada_atleta["anio"]
+            medalla= cada_atleta["medalla"]
 
+            if nombre not in dicc_medallistas:
+                dicc_medallistas[nombre]= [{"evento": evento, "anio": anio, "medalla": medalla}]
+            else:
+                dicc_medallistas[nombre].append({"evento": evento, "anio": anio, "medalla": medalla})
 
-
-
-
-
-
-
-    return
-# print(medallistas_por_nacion_y_genero(a, "Colombia", "f")
+    return dicc_medallistas
+#print(medallistas_por_nacion_y_genero(a, "colombia", "f"))
 
 def porcentaje_medallistas(atletas: list) -> float:
     """Función 12:
