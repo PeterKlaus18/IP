@@ -155,11 +155,6 @@ def hay_facultad_generosa(puestos: list, facultad: str,
     return ("No existe facultad generosa", 0)
 
 
-print(
-    hay_facultad_generosa(cargar_matriz_puestos("matriz_puestos.csv"),
-                          "Medicina", 5))
-
-
 def calcular_autocubrimiento(puestos: list, estadisticas: list) -> list:
 
     facultades = puestos[1:]
@@ -216,3 +211,26 @@ def mostrar_pga_promedio(estadisticas: list) -> None:
     plt.xticks(rotation=90)
     plt.show()
     plt.savefig('pga_promedio.png')
+
+
+def mostrar_puestos_estudios_dirigidos(puestos: list) -> None:
+    estudios_dirigidos_index = puestos[0].index("Estudios Dirigidos")
+
+    facultad_names = []  # Names of the faculties
+    estudios_dirigidos_values = [
+    ]  # Number of positions offered to Estudios Dirigidos by each faculty
+
+    for facultad_row in puestos[1:]:
+        facultad_names.append(facultad_row[0])  # Name of the faculty
+        # Number of positions that the faculty offers to Estudios Dirigidos
+        estudios_dirigidos_values.append(
+            int(facultad_row[estudios_dirigidos_index]))
+
+    plt.figure(figsize=(10, 10))
+    plt.pie(estudios_dirigidos_values, labels=facultad_names)
+    plt.title('Puestos de cada facultad en Estudios Dirigidos')
+    plt.savefig('puestos_estudios_dirigidos.png')
+    plt.show()
+
+
+mostrar_puestos_estudios_dirigidos(cargar_matriz_puestos("matriz_puestos.csv"))
