@@ -179,6 +179,7 @@ def ejecutar_mostrar_pga_promedio() -> None:
         "Ingrese el nombre del archivo de estadísticas: ")
     #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
+    be.mostrar_pga_promedio(ruta_archivo_estadisticas)
 
 
 def ejecutar_mostrar_puestos_estudios_dirigidos() -> None:
