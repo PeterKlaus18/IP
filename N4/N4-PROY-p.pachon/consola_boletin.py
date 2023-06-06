@@ -81,9 +81,6 @@ def ejecutar_cargar_matriz_dobles() -> list:
         "Por favor ingrese el nombre del archivo CSV con la matriz de dobles programas: "
     )
 
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el mensaje que indique al usuario si
-    #fue o no posible cargar el archivo
     dobles = be.cargar_matriz_dobles(archivo)
     if len(dobles) == 0:
         print(
@@ -100,8 +97,6 @@ def ejecutar_puestos_atendidos(puestos: list) -> None:
     """
     facultad = input("Ingrese la facultad de su interes: ")
 
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
     puestos_atendidos = be.puestos_atendidos(puestos, facultad)
     print("La facultad de " + facultad + " atendio " + str(puestos_atendidos) +
           " puestos estudiante")
@@ -113,8 +108,6 @@ def ejecutar_puestos_ocupados(puestos: list) -> None:
     """
     facultad = input("Ingrese la facultad de su interes: ")
 
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
     puestos_ocupados = be.puestos_ocupados(puestos, facultad)
     print("La facultad de " + facultad + " ocupo " + str(puestos_ocupados) +
           " puestos estudiante")
@@ -124,8 +117,6 @@ def ejecutar_facultad_mas_servicial(puestos: list) -> None:
     """ Ejecuta la opcion de consultar la facultad mas servicial
     """
 
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
     facultad_mas_servicial = be.facultad_mas_servicial(puestos)
     print("La facultad mas servicial fue " + facultad_mas_servicial)
 
@@ -138,8 +129,9 @@ def ejecutar_hay_facultad_generosa(puestos: list) -> None:
     facultad = input("Ingrese la facultad de su interes: ")
     porcentaje = float(input("Ingrese el porcentaje de su interes: "))
 
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    hay_facultad_generosa = be.hay_facultad_generosa(puestos, facultad,
+                                                     porcentaje)
+    print(hay_facultad_generosa)
 
 
 def ejecutar_calcular_autocubrimiento(puestos: list,
@@ -147,11 +139,6 @@ def ejecutar_calcular_autocubrimiento(puestos: list,
     """ Ejecuta la opcion de calcular el autocubrimiento para todas
     las facultades
     """
-
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
-    #Le sugerimos solo imprimir la informacion de ultima columna de la
-    #matriz de respuesta pues es la que contiene la informacion calculada.
 
     autocubrimiento = be.calcular_autocubrimiento(puestos, estadisticas)
     print("El autocubrimiento de las facultades fue: ")
@@ -161,9 +148,6 @@ def ejecutar_calcular_autocubrimiento(puestos: list,
 def ejecutar_doble_mas_comun(dobles: list) -> None:
     """ Ejecuta la opcion de consultar el doble programa mas comun
     """
-
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
 
     tupla_doble_mas_comun = be.doble_mas_comun(dobles)
     print("El doble programa mas comun fue " + tupla_doble_mas_comun[0] +
@@ -177,9 +161,9 @@ def ejecutar_mostrar_pga_promedio() -> None:
     """
     ruta_archivo_estadisticas = input(
         "Ingrese el nombre del archivo de estadísticas: ")
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+
     be.mostrar_pga_promedio(ruta_archivo_estadisticas)
+    print("La imagen ha sido guardada en la carpeta del proyecto")
 
 
 def ejecutar_mostrar_puestos_estudios_dirigidos() -> None:
@@ -188,8 +172,8 @@ def ejecutar_mostrar_puestos_estudios_dirigidos() -> None:
         en todas las facultades
     """
     ruta_archivo_puestos = input("Ingrese el nombre del archivo de puestos: ")
-    #TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    be.mostrar_puestos_estudios_dirigidos(ruta_archivo_puestos)
+    print("La imagen ha sido guardada en la carpeta del proyecto")
 
 
 def iniciar_aplicacion():
