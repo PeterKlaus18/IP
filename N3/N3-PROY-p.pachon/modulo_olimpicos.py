@@ -439,3 +439,89 @@ def porcentaje_medallistas(atletas: list) -> float:
     
     return porcentaje
 #print(porcentaje_medallistas(a))
+
+def atletas_por_medalla(atletas:dict)->dict:
+    """recibe como
+    parámetro el diccionario de atletas y devuelve otro diccionario donde las llaves son los
+    tipos de medallas y como valor la lista de atletas que ganaron las medallas
+
+    """
+
+    dicc_medallas= {"gold": [], "silver": [], "bronze": []}
+
+    for cada_atleta in atletas:
+        
+        if cada_atleta["medalla"] != "na":
+            dicc_medallas[cada_atleta["medalla"]].append(cada_atleta)
+
+    return dicc_medallas
+#print(atletas_por_medalla(a))
+
+def medallas_por_pais(atletas_medalla:dict, tipo_medalla:str)->dict:
+    """Genera un diccionario donde la llave es el nombre del país y el valor una lista con los
+    atletas que han obtenido el tipo de medalla solicitado a lo largo de todos los años.
+    
+    {'algeria': [{'nombre': 'amar benikhlef', 'genero': 'm', 'edad': '26', 'pais': 'algeria', 'anio':
+    '2008', 'evento': "judo men's middleweight", 'medalla': 'silver'},{'nombre': 'taoufik makhloufi',
+    'genero': 'm', 'edad': '28', 'pais': 'algeria', 'anio': '2016', 'evento': "athletics men's 800
+    metres", 'medalla': 'silver'}, … ],
+    …
+    …
+    “argentina”: [{'nombre': 'matas jess almeyda', 'genero': 'm', 'edad': '22', 'pais': 'argentina',
+    'anio': '1996', 'evento': "football men's football", 'medalla': 'silver'},{'nombre': 'roberto fabin
+    ayala', 'genero': 'm', 'edad': '23', 'pais': 'argentina', 'anio': '1996', 'evento': "football men's
+    football", 'medalla': 'silver'}…]"""
+
+    dicc_medallas_pais= {}
+    
+    for cada_atleta in atletas_medalla[tipo_medalla]:
+
+        if cada_atleta["pais"] not in dicc_medallas_pais:
+            dicc_medallas_pais[cada_atleta["pais"]]= [cada_atleta]
+
+        else:
+            dicc_medallas_pais[cada_atleta["pais"]].append(cada_atleta)
+
+    return dicc_medallas_pais
+#print(medallas_por_pais(atletas_por_medalla(a), "gold"))
+
+def escribir_archivo_por_medalla(nombre_archivo:str, atletas_tipo_medalla:dict):
+    """que recibe como parámetro el diccionario del punto anterior y genera un archivo de tipo txt,
+    donde deben registrarse: el nombre de cada país seguido de los nombres de los atletas con el
+    evento y el año en que se obtuvo la medalla de ese país.
+    El archivo resultante debe ser del tipo
+    *********************************
+    Pais : united states
+    *********************************
+    stephen anthony abas - wrestling men's featherweight freestyle - 2004
+    nia nicole abdallah - taekwondo women's featherweight - 2004
+    brigetta lashea barrett - athletics women's high jump - 2012
+    dorothy lee dotsie bausch (cowden-) - cycling women's team pursuit - 2012
+    frentorish tori bowie - athletics women's 100 metres - 2016
+    christopher cornelius chris byrd - boxing men's middleweight - 1992…
+    …
+    …
+    …
+    *********************************
+    Pais : russia
+    *********************************
+    tamila rashidovna abasova - cycling women's sprint - 2004
+    bakhtiyar shakhabutdinovich akhmedov - wrestling men's super-heavyweight freestyle - 2008
+    khadzhimurat magomedovich akkayev - weightlifting men's middle-heavyweight - 2004
+    apti khamzatovich aukhadov - weightlifting men's light-heavyweight - 2012
+    lyubov aleksandrovna bruletova - judo women's extra-lightweight - 2000
+    yevgeny aleksandrovich chigishev - weightlifting men's super-heavyweight - 2008
+    aleksey alekseyevich denisenko - taekwondo men's featherweight - 2016"""
+
+    archivo= open(nombre_archivo, "w")
+
+    for cada_pais in atletas_tipo_medalla:
+        archivo.write("*********************************\n")
+        archivo.write("Pais: " + cada_pais + "\n")
+        archivo.write("*********************************\n")
+
+        for cada_atleta in atletas_tipo_medalla[cada_pais]:
+            archivo.write(cada_atleta["nombre"] + " - " + cada_atleta["evento"] + " - " + cada_atleta["anio"] + "\n")
+
+    archivo.close()
+print(escribir_archivo_por_medalla("medallistas.txt", medallas_por_pais(atletas_por_medalla(a), "gold")))
